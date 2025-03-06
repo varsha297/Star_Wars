@@ -1,0 +1,61 @@
+.character-details {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+
+  h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    margin-top: 1.5rem;
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--btn-bg);
+    padding-bottom: 0.5rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .add-fav-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--btn-bg);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-top: 1rem;
+
+    &:hover {
+      background-color: var(--btn-hover);
+    }
+
+    &:disabled {
+      background-color: rgba(0, 0, 0, 0.3);
+      cursor: not-allowed;
+    }
+  }
+}

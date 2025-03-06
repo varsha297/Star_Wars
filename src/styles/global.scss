@@ -1,0 +1,61 @@
+// Global styles
+
+// === THEME VARIABLES === //
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333;
+  --card-bg: #f8f9fa;
+  --btn-bg: #007bff;
+  --btn-hover: #0056b3;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+  --card-bg: #1e1e1e;
+  --btn-bg: #ffcc00;
+  --btn-hover: #e6b800;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  margin: 0;
+  padding: 0;
+}
+
+// Card styling
+.card {
+  width: 90%;
+  margin: auto;
+  background: var(--text-color);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  strong {
+    flex: 1;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+
+  span {
+    flex: 2;
+    text-align: right;
+    color: var(--text-color);
+  }
+}

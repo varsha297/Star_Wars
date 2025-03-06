@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  button {
+    background: var(--btn-bg);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+
+    &:hover {
+      background: var(--btn-hover);
+    }
+
+    &:disabled {
+      background: gray;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    align-self: center;
+    font-size: 1rem;
+  }
+}

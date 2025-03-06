@@ -1,0 +1,112 @@
+.character-list {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-in-out;
+
+  h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+  }
+
+  .search-input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 0 auto;
+    display: flex;
+  }
+
+  .loading,
+  .error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin: 20px 0;
+  }
+
+  .characters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+
+      li {
+        background: var(--card-bg);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        a {
+          color: var(--text-color);
+          text-decoration: none;
+          display: block;
+
+          h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+          }
+
+          p {
+            margin: 5px 0;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    button {
+      background: var(--btn-bg);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+
+      &:hover {
+        background: var(--btn-hover);
+      }
+
+      &:disabled {
+        background: gray;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// === ANIMATION FOR FADE-IN EFFECT === //
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
