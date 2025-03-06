@@ -48,8 +48,10 @@ This project is a React application that allows users to explore Star Wars chara
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/varsha297/star-wars.git
-   cd star-wars
+   git clone https://github.com/varsha297/Star_Wars.git
+   cd Star_Wars
    npm i
-   npm start
+   npm run dev
+   npm run test
+   npm run test:coverage
    ```
