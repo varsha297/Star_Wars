@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1741334258590" clover="3.2.0">
-  <project timestamp="1741334258590" name="All files">
+<coverage generated="1741334741755" clover="3.2.0">
+  <project timestamp="1741334741755" name="All files">
     <metrics statements="114" coveredstatements="110" conditionals="74" coveredconditionals="68" methods="49" coveredmethods="48" elements="237" coveredelements="226" complexity="0" loc="114" ncloc="114" packages="3" files="11" classes="11"/>
     <package name="components">
       <metrics statements="83" coveredstatements="81" conditionals="64" coveredconditionals="60" methods="33" coveredmethods="33"/>
@@ -46,12 +46,12 @@
         <line num="82" count="1" type="stmt"/>
         <line num="95" count="1" type="stmt"/>
         <line num="112" count="1" type="stmt"/>
+        <line num="123" count="1" type="stmt"/>
         <line num="124" count="1" type="stmt"/>
-        <line num="125" count="1" type="stmt"/>
-        <line num="138" count="1" type="stmt"/>
-        <line num="158" count="16" type="stmt"/>
-        <line num="174" count="16" type="stmt"/>
-        <line num="185" count="1" type="stmt"/>
+        <line num="137" count="1" type="stmt"/>
+        <line num="157" count="16" type="stmt"/>
+        <line num="173" count="16" type="stmt"/>
+        <line num="184" count="1" type="stmt"/>
       </file>
       <file name="CharacterList.tsx" path="/Users/ankit/React Project/star-wars/src/components/CharacterList.tsx">
         <metrics statements="21" coveredstatements="19" conditionals="16" coveredconditionals="14" methods="8" coveredmethods="8"/>

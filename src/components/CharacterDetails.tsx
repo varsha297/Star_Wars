@@ -104,13 +104,12 @@ const CharacterDetails = () => {
             <div className="info-row">
                 <label htmlFor="gender-select"><strong>Gender:</strong></label>
                 {isEditingGender ? (
-                    <>
+                    <div>
                         <select
-                            id="gender-select"
+                            className="character-details-gender-select accessible-select"
                             aria-label="Select gender"
                             value={editableGender}
                             onChange={(e) => setEditableGender(e.target.value)}
-                            className="accessible-select"
                         >
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -127,7 +126,7 @@ const CharacterDetails = () => {
                         >
                             <FaCheck />
                         </button>
-                    </>
+                    </div>
                 ) : (
                     <>
                         <span>{editableGender}</span>
