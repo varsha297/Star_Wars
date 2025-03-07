@@ -8,10 +8,6 @@ import { useCharacter } from "../hooks/useCharacter";
 import { useHomeworld } from "../hooks/useHomeWorld";
 
 // Mock fetchCharacterDetails, fetchHomeworld, and useFetchMultiple functions
-jest.mock("../api", () => ({
-    fetchCharacterDetails: jest.fn(),
-    fetchHomeworld: jest.fn(),
-}));
 
 jest.mock("../context/FavoritesContext", () => ({
     useFavourites: jest.fn(),
@@ -358,5 +354,59 @@ describe("CharacterDetails Component", () => {
         );
 
         await waitFor(() => expect(screen.getByText(/Loading.../i)).toBeInTheDocument());
+    });
+
+    test("allows editing and updating height and gender", async () => {
+        const mockCharacter = {
+            name: "Luke Skywalker",
+            hair_color: "blond",
+            eye_color: "blue",
+            height: 172,
+            gender: "male",
+            homeworld: "https://swapi.dev/api/planets/1/",
+            films: ["https://swapi.dev/api/films/1/"],
+            starships: ["https://swapi.dev/api/starships/12/"],
+            url: "https://swapi.dev/api/people/1/",
+        };
+
+        (useCharacter as jest.Mock).mockReturnValue({
+            data: mockCharacter,
+            isLoading: false,
+            error: null,
+        });
+
+
+        render(
+            <BrowserRouter>
+                <QueryClientProvider client={queryClient}>
+                    <CharacterDetails />
+                </QueryClientProvider>
+            </BrowserRouter>
+        );
+        fireEvent.click(screen.getByTestId("edit-height"));
+        const heightInput = screen.getByRole("spinbutton");
+        fireEvent.change(heightInput, { target: { value: "180" } });
+
+        // Click the save button
+        fireEvent.click(screen.getByTestId("save-height"));
+
+        // Wait for the value to be updated
+        await waitFor(() => {
+            expect(screen.getByText("180")).toBeInTheDocument();
+        });
+
+        fireEvent.click(screen.getByTestId("edit-gender"));
+
+        // Select a new gender option
+        const genderSelect = screen.getByRole("combobox"); // Correct way for select dropdowns
+        fireEvent.change(genderSelect, { target: { value: "female" } });
+
+        // Click the save button
+        fireEvent.click(screen.getByTestId("save-gender"));
+
+        // Wait for the value to be updated
+        await waitFor(() => {
+            expect(screen.getByText("female")).toBeInTheDocument();
+        });
     });
 });

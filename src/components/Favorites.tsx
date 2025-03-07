@@ -16,17 +16,20 @@ const Favourites = () => {
                     <li key={char.url} className="card">
                         <h3>{char.name}</h3>
                         <div className="info-row">
-                            <strong>Height:</strong><span>{char.height}</span>
+                            <strong>Height:</strong>
+                            <p>{char.height}</p>
                         </div>
                         <div className="info-row">
-                            <strong>Gender:</strong><span>{char.gender}</span>
+                            <strong>Gender:</strong>
+                            <p>{char.gender}</p>
                         </div>
-                        <div className="info-row">
-                            {/* <strong>Home World:</strong><span>{isHomeworldLoading ? "Loading..." : char?.name}</span> */}
-                        </div>
-                        <p>Height: {char.height}</p>
-                        <p>Gender: {char.gender}</p>
-                        <button className="btn" onClick={() => removeFavourite(char.url)}>Remove</button>
+                        <button
+                            className="btn"
+                            onClick={() => removeFavourite(char.url)}
+                            aria-label={`Remove ${char.name} from favourites`}
+                        >
+                            Remove
+                        </button>
                     </li>
                 ))}
             </ul>

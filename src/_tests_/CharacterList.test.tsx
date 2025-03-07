@@ -4,11 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import CharacterList from "../components/CharacterList";
 import { useCharacterList } from "../hooks/useCharacterList";
 
-// Mock fetchCharacters and searchCharacters functions
-jest.mock("../api", () => ({
-    fetchCharacters: jest.fn(), // Ensure mock returns a valid object
-    searchCharacters: jest.fn(),
-}));
+
 
 // Mock useCharacterList hook
 jest.mock("../hooks/useCharacterList", () => ({
@@ -178,4 +174,40 @@ describe("CharacterList Component", () => {
         jest.useRealTimers();
     });
 
+    test("prefetches the next page when data.next is available", async () => {
+        const mockData = {
+            next: 'https://swapi.dev/api/people/?page=2',
+            count: 82,
+            results: [{
+                "name": "Anakin Skywalker",
+                "height": "188",
+                "mass": "84",
+                "hair_color": "blond",
+                "skin_color": "fair",
+                "eye_color": "blue",
+                "birth_year": "41.9BBY",
+                "gender": "male",
+                "url": "https://swapi.dev/api/people/11/",
+                "homeworld": "https://swapi.dev/api/planets/1/"
+            }]
+        };
+
+        (useCharacterList as jest.Mock).mockReturnValue({
+            data: mockData,
+            isLoading: false,
+            error: null,
+        });
+
+        render(
+            <BrowserRouter>
+                <QueryClientProvider client={queryClient}>
+                    <CharacterList />
+                </QueryClientProvider>
+            </BrowserRouter>
+        );
+
+        await waitFor(() => {
+            expect(queryClient.getQueryData(['characters', 2, ''])).toBeUndefined();
+        });
+    });
 });

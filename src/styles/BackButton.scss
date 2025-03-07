@@ -1,15 +1,19 @@
 .back-button {
-  background-color: #ffcc00;
-  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffcc00;
   border: none;
-  padding: 8px 12px;
-  font-size: 16px;
   cursor: pointer;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  transition: background 0.3s ease-in-out;
+  font-size: 16px;
+  color: #333;
+  padding: 8px;
+}
 
-  &:hover {
-    background-color: #ffaa00;
-  }
+.back-button:hover {
+  color: #ffaa00;
+}
+
+.back-icon {
+  font-size: 18px;
 }

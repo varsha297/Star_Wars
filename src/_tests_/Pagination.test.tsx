@@ -35,4 +35,22 @@ describe("Pagination Component", () => {
         fireEvent.click(screen.getByText(/Next/i));
         expect(onPageChangeMock).toHaveBeenCalledWith(3);
     });
+
+    test("disables the Prev button on the first page", () => {
+        render(
+            <Pagination currentPage={1} totalPages={5} onPageChange={jest.fn()} />
+        );
+
+        const prevButton = screen.getByRole("button", { name: /previous page/i });
+        expect(prevButton).toBeDisabled();
+    });
+
+    test("disables the Next button on the last page", () => {
+        render(
+            <Pagination currentPage={5} totalPages={5} onPageChange={jest.fn()} />
+        );
+
+        const nextButton = screen.getByRole("button", { name: /next page/i });
+        expect(nextButton).toBeDisabled();
+    });
 });

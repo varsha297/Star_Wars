@@ -21,17 +21,29 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
     };
 
     return (
-        <div className="pagination">
-            <button onClick={handlePrevPage} disabled={currentPage === 1}>
+        <nav className="pagination" role="navigation" aria-label="Pagination Navigation">
+            <button
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                aria-disabled={currentPage === 1}
+                aria-label="Previous Page"
+            >
                 Prev
             </button>
-            <span>
+
+            <span aria-live="polite">
                 Page {currentPage} of {totalPages}
             </span>
-            <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+
+            <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                aria-disabled={currentPage === totalPages}
+                aria-label="Next Page"
+            >
                 Next
             </button>
-        </div>
+        </nav>
     );
 };
 

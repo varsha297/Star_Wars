@@ -7,18 +7,22 @@ const CharacterCard: React.FC<{ character: Character }> = ({ character }) => {
 
     return (
         <li className="card">
-            <Link to={`/character/${character.url.split("/").slice(-2, -1)[0]}`}>
+            <Link
+                to={`/character/${character.url.split("/").slice(-2, -1)[0]}`}
+                aria-label={`View details for ${character.name}`}
+            >
                 <h3>{character.name}</h3>
                 <div className="info-row">
-                    <strong>Gender:</strong><span>{character.gender}</span>
+                    <strong>Gender:</strong>
+                    <p>{character.gender}</p>
                 </div>
                 <div className="info-row">
-                    <strong>Home World:</strong><span>{isHomeworldLoading ? "Loading..." : homeworld?.name}</span>
+                    <strong>Home World:</strong>
+                    <p>{isHomeworldLoading ? "Loading..." : homeworld?.name}</p>
                 </div>
             </Link>
-        </li >
+        </li>
     );
 };
 
-
-export default CharacterCard
+export default CharacterCard;

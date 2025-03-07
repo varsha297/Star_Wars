@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useCharacterList } from "../hooks/useCharacterList";
-
 import CharacterCard from "./CharacterCard";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
-
 import { Character } from "../types";
 import "../styles/CharacterList.scss";
 import { useQueryClient } from "@tanstack/react-query";
@@ -15,7 +13,6 @@ const CharacterList: React.FC = () => {
     const [debouncedSearch, setDebouncedSearch] = useState("");
     const queryClient = useQueryClient();
 
-    // Debounce the search input (wait for user to stop typing)
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setDebouncedSearch(searchTerm);
@@ -23,11 +20,8 @@ const CharacterList: React.FC = () => {
         return () => clearTimeout(timeoutId);
     }, [searchTerm]);
 
-
     const { data, isLoading, error } = useCharacterList(page, debouncedSearch);
-    console.log(data, 'data')
 
-    // Prefetch the next page
     useEffect(() => {
         if (data?.next) {
             const nextPage = page + 1;
@@ -39,7 +33,8 @@ const CharacterList: React.FC = () => {
                         return response.json();
                     }
                     return null;
-                }
+                },
+                staleTime: 1000 * 60 * 5,
             });
         }
     }, [data, page, debouncedSearch, queryClient]);
@@ -49,20 +44,23 @@ const CharacterList: React.FC = () => {
             <h1>Star Wars Characters</h1>
 
             {/* Search Input */}
+            <label htmlFor="search" className="visually-hidden">Search for a character</label>
             <input
+                id="search"
                 type="text"
                 placeholder="Search for a character..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-input"
+                aria-label="Search for a character"
             />
 
             {/* Loading and Error States */}
-            {isLoading && !error && <Loading />}
-            {error && <p className="error">Error loading characters.</p>}
+            {isLoading && !error && <Loading aria-live="polite" />}
+            {error && <p className="error" role="alert">Error loading characters.</p>}
 
             {/* Character Cards */}
-            <div className="characters">
+            <div className="characters" aria-live="polite">
                 {data ? (
                     <ul>
                         {data.results.map((char: Character) => (
@@ -80,6 +78,7 @@ const CharacterList: React.FC = () => {
                     currentPage={page}
                     totalPages={Math.ceil(data.count / 10)}
                     onPageChange={setPage}
+                    aria-label="Pagination"
                 />
             )}
         </div>

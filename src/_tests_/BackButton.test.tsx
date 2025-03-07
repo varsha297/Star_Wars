@@ -18,8 +18,7 @@ describe("BackButton Component", () => {
             </BrowserRouter>
         );
 
-        const buttonElement = screen.getByText(/⬅ Back/i);
-        expect(buttonElement).toBeInTheDocument();
+        expect(screen.getByTestId("back")).toBeInTheDocument();
     });
 
     test("navigates back when button is clicked", () => {
@@ -29,8 +28,7 @@ describe("BackButton Component", () => {
             </BrowserRouter>
         );
 
-        const buttonElement = screen.getByText(/⬅ Back/i);
-        fireEvent.click(buttonElement);
+        fireEvent.click(screen.getByTestId("back"));
 
         expect(mockNavigate).toHaveBeenCalledWith(-1);
     });

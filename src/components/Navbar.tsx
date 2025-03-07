@@ -10,7 +10,6 @@ const Navbar: React.FC = () => {
     const { favourites } = useFavourites();
     const favouriteCount = favourites.length;
 
-
     return (
         <nav className="navbar">
             <div className="navbar-container">
@@ -23,10 +22,18 @@ const Navbar: React.FC = () => {
                     </Link>
                     <Link to="/favorites" className="navbar-link favorites-link">
                         Favorites
-                        {favouriteCount > 0 && <span className="fav-badge">{favouriteCount}</span>}
+                        {favouriteCount > 0 && (
+                            <span className="fav-badge" aria-label={`${favouriteCount} favorites`}>
+                                {favouriteCount}
+                            </span>
+                        )}
                     </Link>
-                    {/* Theme Toggle Button */}
-                    <button className="theme-toggle-btn" onClick={toggleTheme}>
+                    {/* Theme Toggle Button with ARIA Label */}
+                    <button
+                        className="theme-toggle-btn"
+                        onClick={toggleTheme}
+                        aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+                    >
                         {theme === "light" ? <FaMoon /> : <FaSun data-testid="fa-sun-icon" />}
                     </button>
                 </div>
