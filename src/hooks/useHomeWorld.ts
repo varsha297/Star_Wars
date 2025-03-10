@@ -15,19 +15,6 @@ export const useHomeworld = (homeworld: string) => {
     queryKey: ["homeworld", homeworld],
     queryFn: () => fetchHomeworld(homeworld),
     enabled: !cachedHomeworld,
-    initialData: cachedHomeworld, // ✅ Use cached data if available
+    initialData: cachedHomeworld, // Use cached data if available
   });
 };
-
-// //  Try getting cached homeworld
-// const cachedHomeworld = data?.homeworld
-//     ? queryClient.getQueryData<{ name: string }>(["homeworld", data.homeworld])
-//     : null;
-
-// // Fetch homeworld only if not cached
-// const { data: homeworld, isLoading: isHomeworldLoading } = useQuery({
-//     queryKey: ["homeworld", data?.homeworld],
-//     queryFn: () => fetchHomeworld(data!.homeworld),
-//     enabled: !!data && !cachedHomeworld,
-//     initialData: cachedHomeworld, // ✅ Use cached data if available
-// });
